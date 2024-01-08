@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "scheme": "fyp-frontend",
+    "name": "fyp-frontend",
+    "slug": "fyp-frontend",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": { 
+      "infoPlist": { "NSCameraUsageDescription": "This app uses camera to scan." } 
+    },
+    "android": {
+      "package": "com.anonymous.fypfrontend"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+        }
+      ]
+    ],
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
