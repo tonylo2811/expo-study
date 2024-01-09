@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, Button, StyleSheet, Dimensions, Image } from "react-native";
 import { Link, router, Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import { Camera } from 'expo-camera';
 import { TouchableOpacity } from "react-native-gesture-handler";
 
+
+import Icon from '../../../component/Icon';
+
 const cameraPage = () => {
-
-
-    const [hasCameraPermission, setHasCameraPermission] = useState(null);
+    const [hasCameraPermission, setHasCameraPermission] = useState(false);
     const [camera, setCamera] = useState(null);
     const [image, setImage] = useState(null);
-    const [type, setType] = useState(Camera.Constants.Type.back);
+    const [cameraType, setCameraType] = useState(Camera.Constants.Type.back);
 
 
     useEffect(() => {
@@ -23,8 +23,7 @@ const cameraPage = () => {
 
     const takePicture = async () => {
         if (camera) {
-            const data = await camera.takePictureAsync(null)
-            console.log(data.uri)
+            const data = await camera.takePictureAsync(null);
             setImage(data.uri);
         }
     }
@@ -41,31 +40,41 @@ const cameraPage = () => {
                     <Camera
                         ref={ref => setCamera(ref)}
                         style={styles.cameraRatio}
-                        type={type}
+                        type={cameraType}
                         autoFocus={true}
-                        />
-
-                    <TouchableOpacity
-                        style={styles.flipButton}
-                        onPress={() => {
-                            console.log("Testing button clicked")
-                            setType(
-                                type === Camera.Constants.Type.back
-                                    ? Camera.Constants.Type.front
-                                    : Camera.Constants.Type.back
-                            );
-                        }}>
-                        <Text>Flip Button</Text>
-                    </TouchableOpacity>
-
+                    />
                 </View>
 
-                <Button title="Take Picture" onPress={() => takePicture()} />
+
+                <View style={styles.controlsContainer}>
+                    <Icon
+                        name='camera'
+                        width="50"
+                        height="50"
+                        onPress={()=>{takePicture()}}
+                        style={styles.cameraButton}
+                    />
+
+                    <Icon
+                        name='flip'
+                        width="50"
+                        height="50"
+                        style={styles.flipButton}
+                        onPress={()=>{
+                            setCameraType(
+                                cameraType === Camera.Constants.Type.back
+                                    ? Camera.Constants.Type.front
+                                    : Camera.Constants.Type.back
+                            )
+                        }}
+                    />
+                </View>
 
                 {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
 
 
             </View>
+            
         </>
 
     );
@@ -75,28 +84,32 @@ const styles = StyleSheet.create({
     pageContainer: {
         flex: 1,
         backgroundColor: "#000",
-        alignItems: "center",
+        // alignItems: "center",
+        justifyContent: 'center'
     },
     cameraContainer: {
         flex: 1,
-        flexDirection: 'row',
+        flexDirection: 'col',
         position: "relative",
         backgroundColor: "#f7daf5"
     },
     cameraRatio: {
         flex: 1,
         aspectRatio: 0.75
-        // width: Dimensions.get('window').width - 100,
-        // height: Dimensions.get('window').height - 100
-        // width: 200,
-        // height: 200
     },
-    flipButton: {
-        position: "absolute",
-        bottom: 0,
-        right: 0,
-        zIndex: 2,
+    controlsContainer: {
+        backgroundColor: "#d4a8f9",
+        flexDirection: "row",
+        justifyContent: "space-between", // Update this line to add space between buttons
+        padding: 16,
+    },
 
+    cameraButton: {
+        alignSelf: "center", // Align the button in the center vertically
+    },
+
+    flipButton: {
+        alignSelf: "flex-end", // Align the button to the right side
     },
 
 });

@@ -7,11 +7,9 @@ const addScan = () => {
 
   return (
     <>
-      <Stack.Screen options={{ headerShown:false, title: "Add Clothes" }} />
-      {/* <Stack.Screen options={{ headerShown:false, title: "Camera Page" }} /> */}
       <View >
         <Text>Add Clothes / Scan Tag</Text>
-        {/* <Button title="Scan Tag" onPress={() => router.push("/addScan/scanTag")} /> */}
+
         <Link href={"/addScan/scanTag"}>
           <Text>Scan Tag</Text>
         </Link>
@@ -21,12 +19,7 @@ const addScan = () => {
             <Text>Camera ?</Text>
           </TouchableOpacity>
         </Link>
-
-
-
         
-        <StatusBar style="auto" />
-
       </View>
     </>
     
