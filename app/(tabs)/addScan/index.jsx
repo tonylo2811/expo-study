@@ -19,6 +19,12 @@ const addScan = () => {
             <Text>Camera ?</Text>
           </TouchableOpacity>
         </Link>
+
+        <Link href={"/addScan/h"} asChild>
+          <TouchableOpacity style={styles.button}>
+            <Text>H - index.tsx</Text>
+          </TouchableOpacity>
+        </Link>
         
       </View>
     </>
