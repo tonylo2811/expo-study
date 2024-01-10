@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, Button, StyleSheet, Dimensions, Image } from "react-native";
-import { Link, router, Stack } from "expo-router";
+import { Link, useRouter, Stack  } from "expo-router";
 import { Camera } from 'expo-camera';
 import { TouchableOpacity } from "react-native-gesture-handler";
 
@@ -13,6 +13,15 @@ const cameraPage = () => {
     const [image, setImage] = useState(null);
     const [cameraType, setCameraType] = useState(Camera.Constants.Type.back);
 
+    const router = useRouter();
+
+    useEffect(()=>{
+         if(image){
+            console.log("iamge :", image)
+            router.push({ pathname: "/addScan/photo", params: { image } });
+            // router.push({ pathname: "'/addScan/photo"});
+         }
+    },[image])
 
     useEffect(() => {
         (async () => {
@@ -69,10 +78,6 @@ const cameraPage = () => {
                         }}
                     />
                 </View>
-
-                {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-
-
             </View>
             
         </>
