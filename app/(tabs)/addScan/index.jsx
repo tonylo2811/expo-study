@@ -25,6 +25,12 @@ const addScan = () => {
             <Text>H - index.tsx</Text>
           </TouchableOpacity>
         </Link>
+
+        <Link href={"/addScan/updatedVersion"} asChild>
+          <TouchableOpacity style={styles.button}>
+            <Text>H - updatedVersion.tsx</Text>
+          </TouchableOpacity>
+        </Link>
         
       </View>
     </>
