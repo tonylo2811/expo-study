@@ -1,7 +1,7 @@
 import { Stack } from "expo-router";
 
-const WalldrobeLayout = () => {
+const WardrobeLayout = () => {
   return <Stack/>
 }
 
-export default WalldrobeLayout;
+export default WardrobeLayout;

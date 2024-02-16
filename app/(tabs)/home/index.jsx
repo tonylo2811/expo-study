@@ -13,7 +13,6 @@ export default function App() {
   const fetchData = async () => {
     console.log("fetching data");
     try {
-      console.log(AUTH?.TESTAUTH)
       const getres = await axios.get(GET?.TESTGET);
       const postres = await axios.post(POST?.TESTPOST);
       const authres = await axios.get(AUTH?.TESTAUTH);

@@ -7,20 +7,11 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": { 
-      "infoPlist": { "NSCameraUsageDescription": "This app uses camera to scan." } 
-    },
     "android": {
       "package": "com.anonymous.fypfrontend"
     },
     "plugins": [
-      "expo-router",
-      [
-        "expo-camera",
-        {
-          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
-        }
-      ]
+      "expo-router"
     ],
     "web": {
       "bundler": "metro"
